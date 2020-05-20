@@ -3,10 +3,10 @@
 <head>
        
 	<meta charset="utf-8"/>
-    <meta name="description" content="Strona aplikacji pogo">
-    <meta name="author" content="Łukasz Mączka">
+    <meta name="description" content="Warsztat">
+    <meta name="author" content="Damian Paluch">
     <meta name="robots" content="index">
- 	<title>PoGo Client</title>	   
+ 	<title>Warsztat samochodowy</title>	   
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--------------------------CZCIONKI--------------------->
