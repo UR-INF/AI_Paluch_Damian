@@ -35,6 +35,14 @@
 </head>    
 <body>
     <?php
+    if ($c = oci_connect("c##warsztat", "admin", "localhost/XE")) {
+   echo "Successfully connected to Oracle.";
+   oci_close($c);
+ } else {
+   $err = oci_error();
+   echo "Oracle Connect Error " . $err['text'];
+ }
+    
     session_start();
     
         //$current_page = isset($_GET['page']) ? $_GET['page'] : null; 
@@ -55,14 +63,11 @@
 			case 'rejestracja':
 				include 'rejestracja.php';
 				break;
-			case 'register':
-				include 'register.php';
-				break;
 			case 'klienci':
 				include 'klienci.php';
 				break;
-            case 'main':
-                include 'main.php';
+            case 'edycjaDanych':
+                include 'edycjaDanych.php';
                 break;
             case 'password_forgot':
                 include 'password_forgot.php';

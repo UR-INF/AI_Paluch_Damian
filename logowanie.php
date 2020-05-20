@@ -47,6 +47,13 @@
 </div>
 
 <?php
+ if ($c = oci_connect("c##warsztat", "admin", "localhost/XE")) {
+   echo "Successfully connected to Oracle.";
+   oci_close($c);
+ } else {
+   $err = oci_error();
+   echo "Oracle Connect Error " . $err['text'];
+ }
 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['rejestracja']))
 {
     func();

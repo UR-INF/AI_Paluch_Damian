@@ -5,8 +5,10 @@ html,body{
     background-color: #6D6D6D;
     background-image: url('../img/2.png');
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center; 
 }
-/*===LOGIN===*/
+
 .login_container{
     height: 100%;
     font-family: 'Numans', sans-serif;
