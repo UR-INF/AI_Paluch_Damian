@@ -28,14 +28,14 @@ html,body{
     margin-top: auto;
     margin-bottom: auto;
     width: 800px;
-    background-color: rgba(0,0,0,0.95) !important;
+    background-color: rgba(0,0,0,0.50) !important;
 }
 .registered_card{
     height: auto;
     margin-top: auto;
     margin-bottom: auto;
     width: auto;
-    background-color: rgba(0,0,0,0.95) !important;
+    background-color: rgba(0,0,0,0.50) !important;
     color: white;
     font-size:45px;
     text-align: center;
