@@ -58,8 +58,8 @@
 			case 'register':
 				include 'register.php';
 				break;
-			case 'rejestracja':
-				include 'rejestracja.php';
+			case 'klienci':
+				include 'klienci.php';
 				break;
             case 'main':
                 include 'main.php';
