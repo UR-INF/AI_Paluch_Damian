@@ -7,12 +7,16 @@ html,body{
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center; 
+    
 }
 
 .login_container{
     height: 100%;
     font-family: 'Numans', sans-serif;
     align-content: center;
+        z-index:-1;
+    overflow:hidden;
+    
 }
 .card{
     height: 370px;
@@ -20,6 +24,8 @@ html,body{
     margin-bottom: auto;
     width: 400px;
     background-color: rgba(0,0,0,0.50) !important;
+    
+    
 }
 
 .card-header h3{
@@ -31,6 +37,7 @@ html,body{
     margin-bottom: auto;
     width: 600px;
     background-color: rgba(0,0,0,0.50) !important;
+
 }
 .registered_card{
     height: auto;
@@ -132,4 +139,8 @@ input:focus{
     width:120px;
     margin 5px;
     text-align: center;
+}
+.alert
+{
+    background-color: red;
 }

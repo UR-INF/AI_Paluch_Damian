@@ -35,13 +35,7 @@
 </head>    
 <body>
     <?php
-    if ($c = oci_connect("c##warsztat", "admin", "localhost/XE")) {
-   echo "Successfully connected to Oracle.";
-   oci_close($c);
- } else {
-   $err = oci_error();
-   echo "Oracle Connect Error " . $err['text'];
- }
+   
     
     session_start();
     
