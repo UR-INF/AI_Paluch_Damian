@@ -144,3 +144,12 @@ input:focus{
 {
     background-color: red;
 }
+
+.my-custom-scrollbar {
+position: relative;
+height: 27%;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}
