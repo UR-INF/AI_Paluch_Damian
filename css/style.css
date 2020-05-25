@@ -24,7 +24,7 @@ html,body{
     margin-top: auto;
     margin-bottom: auto;
     width: 400px;
-    background-color: rgba(0,0,0,0.50) !important;
+    background-color: rgba(0,0,0,0.80) !important;
     
     
 }
@@ -37,7 +37,7 @@ html,body{
     margin-top: auto;
     margin-bottom: auto;
     width: 600px;
-    background-color: rgba(0,0,0,0.50) !important;
+    background-color: rgba(0,0,0,0.80) !important;
 
 }
 .registered_card{
@@ -45,7 +45,7 @@ html,body{
     margin-top: auto;
     margin-bottom: auto;
     width: auto;
-    background-color: rgba(0,0,0,0.50) !important;
+    background-color: rgba(0,0,0,0.80) !important;
     color: white;
     font-size:45px;
     text-align: center;
@@ -153,4 +153,27 @@ overflow: auto;
 }
 .table-wrapper-scroll-y {
 display: block;
+}
+#lewa
+{
+    padding: 4px;
+    float: left
+}
+#srodek{
+    padding: 4px;
+    float:inherit;
+}
+.container
+{
+    background-color: rgba(0,0,0,0.80) !important;
+    color: white;
+}
+table {width: 100%;}
+
+tbody {
+    
+    width: 100%;
+    max-height: 200px;;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
 }
