@@ -1,76 +1,138 @@
 <?php include 'administratorzy.php' ?>
-administrator zarzadzanie pracownikami
 
-<table class="table table-hover">
-    <tbody>
-        <tr class="table-active">
-            <th scope="row">Imię</th>
-            <td>Nazwisko</td>
-            <td>Nr. telefonu</td>
-            <td>Adres</td>
-        </tr>
-    </tbody>
-    <?php
+
+<?php
+    $id = 0;
+$update=false;
+
 require_once "polaczenie.php";
 $conn = oci_connect($login, $haslo, $host);
-if(!$conn)
-        {
-            $m = oci_error();
-            echo $m['message'], "\n";
-            exit;   
-        }
-$query="select * from pracownicy where id_uzytkownika = 1";
-$stid = oci_parse($conn, $query);
-$result = oci_execute($stid);
-
-    while($row=oci_fetch_array($stid))
-
-{
-echo "<tr><td>" . $row[1] . "</td><td>" . $row[2] . "</td><td>" . $row[3] . "</td><td>" . $row[4] . "</td></tr>";
+if (!$conn) {
+    $m = oci_error();
+    echo $m['message'];
+    exit;
 }
+?>
 
-if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['szukaj']))
-    {
-        try
-        {
-            $conn = oci_connect($login, $haslo, $host);
-            if(!$conn)
-            {
-                $m = oci_error();
-                echo $m['message'], "\n";
-                exit;   
-            }
-            $query="begin szukaj_danych.szukaj_pracownika(:szukane, :cursor); end;";
 
-            $szukane = $_POST['szukajField'];
-            $curs = oci_new_cursor($conn);
-            $stid = oci_parse($conn, $query);
-            
-            oci_bind_by_name($stid, ":szukane",  $szukane);
-            oci_bind_by_name($stid, ":cursor", $curs, -1, OCI_B_CURSOR);
-            $result = oci_execute($stid);
-            oci_execute($curs);
-            
-            while($row = oci_fetch_assoc($curs))
-                
-            {
-    echo "<tr><td>" . $row['IMIE'] . "</td><td>" . $row['NAZWISKO'] . "</td><td>" . $row['NR_TEL'] . "</td><td>" . $row['ADRES'] . "</td></tr>";
-}
+<div class="container">
+    <div class="row-justify-content-center">
+        <div class="scroll">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Imię</th>
+                        <th>Nazwisko</th>
+                        <th>Nr. telefonu</th>
+                        <th>Adres</th>
+                        <th colspan="2">Akcja</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $query = "select * from pracownicy where id_uzytkownika = 1";
+                    $stid = oci_parse($conn, $query);
+                    $result = oci_execute($stid);
 
-        }
-        catch(Exception $error)
-    {
-        echo 'Błąd serwera!';
-    }
-    }
-echo "</table>";
-    ?>
-    <form method="POST">
-        <div class="form-group">
-            <input type="text" name="szukajField" class="form-control input-md" placeholder="Szukana wartość">
+                    while ($row = oci_fetch_array($stid)):
+                    ?>
+                    <tr>
+                        <td><?php echo $row['IMIE'];?></td>
+                        <td><?php echo $row['NAZWISKO'];?></td>
+                        <td><?php echo $row['NR_TEL'];?></td>
+                        <td><?php echo $row['ADRES'];?></td>
+
+
+
+                        <td>
+                            <form method="POST">
+                                <input type="submit" name="edytuj" class="btn btn-outline-info" value="Edytuj">
+
+                                <input type="hidden" value="<?php echo $row['ID']; ?>" name="id"/>
+                            </form>
+
+
+                    </tr>
+
+                    <?php endwhile; ?>
+
+
+
+                </tbody>
+            </table>
         </div>
-        <button class="btn btn-secondary" type="submit" name="szukaj">Szukaj</button>
-    </form>
-   
+    </div>
 
- 
+    <?php
+    if(isset($_POST['edytuj'])){       
+        $id = $_POST['id'];
+        $update = true;
+        $query = "select * from pracownicy where id = '$id' and id_uzytkownika = 1";
+        $stid = oci_parse($conn, $query);
+        $result = oci_execute($stid);
+
+        $row =oci_fetch_array($stid);
+        $imie = $row['IMIE'];
+        $nazwisko = $row['NAZWISKO'];
+        $nrTel = $row['NR_TEL'];
+        $adres = $row['ADRES'];
+        $id = $row['ID'];
+    }
+    ?>
+    <?php if ($update == true):?>
+    <div id="srodek">
+
+        <form method="POST">
+            <div class="row justify-content-center">
+                <div class="form-group">
+                    <input name="imie" value="<?php echo $imie;?>" type="text" placeholder="Imię" class="form-control" required="">
+                </div>
+                <div class="form-group">
+                    <input name="nazwisko" value="<?php echo $nazwisko;?>" type="text" placeholder="Nazwisko" class="form-control" required="">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="form-group">
+                    <input name="nrTel" value="<?php echo $nrTel;?>" type="number" placeholder="Nr. telefonu" class="form-control" required="">
+                </div>
+                <div class="form-group">                   
+                    <input class="form-control" name="adres" value="<?php echo $adres;?>" placeholder="Adres" required="">
+                    <input type="hidden" value="<?php echo $id;?>" name="id"/>
+                </div>
+            </div>
+                <div class="form-group"> 
+                
+                <div class="row justify-content-center">
+                    <button name="zapisz" class="btn btn-secondary">Zapisz</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<?php endif;?>
+
+
+
+
+<?php
+if(isset($_POST['zapisz'])){
+    $query = "begin edytuj_dane.edytuj_pracownikow(:id, :imie, :nazwisko, :nrTel, :adres); end;";
+    $id = $_POST['id'];
+    $imie = $_POST['imie'];
+    $nazwisko = $_POST['nazwisko'];
+    $nrTel = $_POST['nrTel'];
+    $adres = $_POST['adres'];
+    $stid = oci_parse($conn, $query);
+    oci_bind_by_name($stid, ":id", $id);
+    oci_bind_by_name($stid, ":imie", $imie);
+    oci_bind_by_name($stid, ":nazwisko", $nazwisko);
+    oci_bind_by_name($stid, ":nrTel", $nrTel);
+    oci_bind_by_name($stid, ":adres", $adres);
+    $result = oci_execute($stid);
+
+    echo("<meta http-equiv='refresh' content='0'>");
+
+
+}
+?>
+

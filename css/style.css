@@ -9,6 +9,7 @@ html,body{
     background-attachment: fixed;
     background-position: center; 
     
+    
 }
 
 .login_container{
@@ -176,4 +177,7 @@ tbody {
     max-height: 200px;;       /* Just for the demo          */
     overflow-y: auto;    /* Trigger vertical scroll    */
     overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+button{
+    padding: 5px;
 }

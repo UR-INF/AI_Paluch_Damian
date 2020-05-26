@@ -60,15 +60,7 @@ if (!$conn) {
             </table>
         </div>
     </div>
-    <div id="lewa">
-
-        <form method="POST">
-            <div class="form-group">
-                <input type="text" name="szukajField" class="form-control" placeholder="Szukana wartosc">
-            </div>
-            <button class="btn btn-secondary" type="submit" name="szukaj">Szukaj</button>
-        </form>
-    </div>
+    
     <?php
     if(isset($_POST['edytuj'])){       
         $id = $_POST['id'];
