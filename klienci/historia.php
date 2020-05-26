@@ -1,9 +1,8 @@
 <?php include 'klienci.php' ?>
-klient historia
 
 <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
-  <table class="table table-bordered table-striped mb-0">
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">Marka</th>
@@ -42,7 +41,7 @@ while($row=oci_fetch_array($stid))
 
 <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
-  <table class="table table-bordered table-striped mb-0">
+  <table class="table ">
     <thead>
       <tr>
         <th scope="col">Marka</th>
@@ -82,7 +81,7 @@ echo "<tr><td>" . $row[0] . "</td><td>" . $row[1] . "</td><td>" . $row[2] . "</t
 
 <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
-  <table class="table table-bordered table-striped mb-0">
+  <table class="table">
     <thead>
       <tr>
         <th scope="col">Marka</th>

@@ -134,7 +134,7 @@ if(isset($_POST['zapisz'])){
     oci_bind_by_name($stid, ":uwagi", $uwagi);
     $result = oci_execute($stid);
 
-    //echo("<meta http-equiv='refresh' content='0'>");
+    echo("<meta http-equiv='refresh' content='0'>");
 
 
 }
