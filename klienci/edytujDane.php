@@ -23,6 +23,7 @@ $result = oci_execute($stid);
                     <option value="<?php echo $row['ID'];?>"><?php echo $row['MARKA'] . ' ' . $row['MODEL'];?> 
 
                     </option>
+                    <br>
 
                     <?php endwhile;?>
                 </select>

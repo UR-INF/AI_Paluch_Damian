@@ -10,7 +10,7 @@ if(!$conn)
     echo $m['message'], "\n";
     exit;   
 }
-$id = 1;
+$id = $_SESSION['id'];
 $query="select * from samochody where id_klienta = '$id'";
 $stid = oci_parse($conn, $query);
 $result = oci_execute($stid);
@@ -27,47 +27,64 @@ $result = oci_execute($stid);
                     <?php endwhile;?>
                 </select>
             </div>
-                <?php
-                $query="select * from uslugi";
-                $stid = oci_parse($conn, $query);
-                $result = oci_execute($stid);
-                ?>
-                <div class="form-group">
-                    <select name="idUslugi">
-                        <?php
-                        while($row=oci_fetch_array($stid)):?>
-                        <option value="<?php echo $row['ID'];?>"><?php echo $row['NAZWA'];?> 
+            <?php
+            $query="select * from uslugi";
+            $stid = oci_parse($conn, $query);
+            $result = oci_execute($stid);
+            ?>
+            <div class="form-group">
+                <select name="idUslugi">
+                    <?php
+                    while($row=oci_fetch_array($stid)):?>
+                    <option value="<?php echo $row['ID'];?>"><?php echo $row['NAZWA'];?> 
 
-                        </option>
+                    </option>
 
-                        <?php endwhile;?>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <input name="data" type="date" class="form-control" required>
-                </div>
-                <button class="btn btn-secondary" type="submit" name="usluga">Dodaj</button>
-                </form>
+                    <?php endwhile;?>
+                </select>
             </div>
+
+            <div class="form-group">
+                <input name="data" type="date" class="form-control" required>
+            </div>
+            <button class="btn btn-secondary" type="submit" name="usluga">Dodaj</button>
+        </form>
+
+
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['usluga'])) {
+            error_reporting(E_ALL ^ E_WARNING);
+            $query = "begin dodaj_dane.dodaj_usluge(:idUslugi, :idSamochodu, :data); end;";
+
+            $idSamochodu = $_POST['idSamochodu'];
+            $idUslugi = $_POST['idUslugi'];
+            $data = $_POST['data'];
+            $stid = oci_parse($conn, $query);
+
+            oci_bind_by_name($stid, ":idUslugi", $idUslugi);
+            oci_bind_by_name($stid, ":idSamochodu", $idSamochodu);
+            oci_bind_by_name($stid, ":data", $data);
+            $result = oci_execute($stid);
+            if(false === $result){
+                $e = oci_error($stid);
+                if($e['code'] == 20006)
+                {?>
+        <div class="alert alert-dismissible alert-secondary">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Błąd</strong> Podałeś date z przeszłości
+        </div> <?php
+                }else if($e['code'] == 20007)
+                {?>
+        <div class="alert alert-dismissible alert-secondary">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Błąd</strong> Nie pracujemy w weekendy
+        </div> <?php
+                }
+            }
+
+
+
+        }
+        ?>
     </div>
-
-    <?php
-    if ($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['usluga'])) {
-
-        $query = "begin dodaj_dane.dodaj_usluge(:idUslugi, :idSamochodu, :data); end;";
-
-        $idSamochodu = $_POST['idSamochodu'];
-        $idUslugi = $_POST['idUslugi'];
-        $data = $_POST['data'];
-        $stid = oci_parse($conn, $query);
-
-        oci_bind_by_name($stid, ":idUslugi", $idUslugi);
-        oci_bind_by_name($stid, ":idSamochodu", $idSamochodu);
-        oci_bind_by_name($stid, ":data", $data);
-        $result = oci_execute($stid);
-
-
-
-    }
-    ?>
+</div>

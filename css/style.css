@@ -34,7 +34,7 @@ html,body{
     margin-bottom: auto;
     width: 400px;
     background-color: rgba(0,0,0,0.80) !important;
-    
+    padding: 10px;
 }
 
 .card-header h3{
@@ -184,4 +184,7 @@ tbody {
 }
 .navbar{
     color: #9a9da0;
+}
+input{
+    margin: auto;
 }

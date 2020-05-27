@@ -16,7 +16,7 @@ if (!$conn) {
 <div class="container">
     <div class="row-justify-content-center">
         <div class="scroll">
-            <table class="table">
+            <table class="table" name="myTable" id="myTable">
                 <thead>
                     <tr>
                         <th>Marka</th>
@@ -26,7 +26,8 @@ if (!$conn) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
+
+                    <?php 
                     $query="select s.marka, s.model, u.nazwa, su.data from samochody s, samochody_uslugi su, uslugi u where s.id = su.id_samochodu and su.id_uslugi = u.id";
                     $stid = oci_parse($conn, $query);
                     $result = oci_execute($stid);
@@ -41,30 +42,39 @@ if (!$conn) {
                     </tr>
 
                     <?php endwhile; 
-                    
+
                     if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['szukaj']))
                     {
-                        try
+                    ?>
+                    <script type="text/javascript">
+                        var tableHeaderRowCount = 1;
+                        var table = document.getElementById('myTable');
+                        var rowCount = table.rows.length;
+                        for (var i = tableHeaderRowCount; i < rowCount; i++) {
+                            table.deleteRow(tableHeaderRowCount);
+                        }
+                    </script>
+                    <?php
+
+                        $conn = oci_connect($login, $haslo, $host);
+                        if(!$conn)
                         {
-                            $conn = oci_connect($login, $haslo, $host);
-                            if(!$conn)
-                            {
-                                $m = oci_error();
-                                echo $m['message'], "\n";
-                                exit;   
-                            }
-                            $query="begin szukaj_danych.szukaj_uslugi_admin(:szukane, :cursor); end;";
+                            $m = oci_error();
+                            echo $m['message'], "\n";
+                            exit;   
+                        }
+                        $query="begin szukaj_danych.szukaj_uslugi_admin(:szukane, :cursor); end;";
 
-                            $szukane = $_POST['szukajField'];
-                            $curs = oci_new_cursor($conn);
-                            $stid = oci_parse($conn, $query);
+                        $szukane = $_POST['szukajField'];
+                        $curs = oci_new_cursor($conn);
+                        $stid = oci_parse($conn, $query);
 
-                            oci_bind_by_name($stid, ":szukane",  $szukane);
-                            oci_bind_by_name($stid, ":cursor", $curs, -1, OCI_B_CURSOR);
-                            $result = oci_execute($stid);
-                            oci_execute($curs);
+                        oci_bind_by_name($stid, ":szukane",  $szukane);
+                        oci_bind_by_name($stid, ":cursor", $curs, -1, OCI_B_CURSOR);
+                        $result = oci_execute($stid);
+                        oci_execute($curs);
 
-                            while($row = oci_fetch_assoc($curs)):
+                        while($row = oci_fetch_assoc($curs)):
                     ?>
                     <tr>
                         <td><?php echo $row['MARKA'];?></td>
@@ -75,14 +85,10 @@ if (!$conn) {
 
                     <?php endwhile;
 
-                        }
-                        catch(Exception $error)
-                        {
-                            echo 'Błąd serwera!';
-                        }
                     }
 
                     ?>
+
                 </tbody>
             </table>
         </div>
@@ -97,3 +103,6 @@ if (!$conn) {
             </div>
         </form>
     </div>
+
+
+

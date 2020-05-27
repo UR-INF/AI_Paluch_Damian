@@ -1,25 +1,24 @@
 <?php include 'klienci.php' ?>
-klient dodaj samochód
-<form method="post">
-    <div class="form-group">
-        <label class="col-form-label" for="inputDefault">Default input</label>
-        <input type="text" name="marka" class="form-control" placeholder="Marka" id="marka" required="">
-    </div>
-    <div class="form-group">
-        <label class="col-form-label" for="inputDefault">Default input</label>
-        <input type="text" name="model" class="form-control" placeholder="Default input" id="model" required="">
-    </div>
-    <div class="form-group">
-        <label class="col-form-label" for="inputDefault">Default input</label>
-        <input type="number" name="pojSilnika" class="form-control" placeholder="Default input" id="pojSilnika" required="">
-    </div>
-    <div class="form-group">
-        <label class="col-form-label" for="inputDefault">Default input</label>
-        <input type="number" name="rok" class="form-control" placeholder="Default input" id="rok" required="">
-    </div>
-    <button class="btn btn-secondary" type="submit" name="dodajSamochod">Dodaj</button>
-</form>
+<div class="d-flex justify-content-center">
+    <div class="card">
+        <form method="post">
+            <div class="form-group">
+                <input type="text" name="marka" class="form-control" placeholder="Marka"  required="">
+            </div>
+            <div class="form-group">
+                <input type="text" name="model" class="form-control" placeholder="Model" required="">
+            </div>
+            <div class="form-group">
 
+                <input type="number" name="pojSilnika" class="form-control" placeholder="Pojemność silnika" required="">
+            </div>
+            <div class="form-group">
+                <input type="number" name="rok" class="form-control" placeholder="Rok produkcji"  required="">
+            </div>
+            <button class="btn btn-secondary" type="submit" name="dodajSamochod">Dodaj</button>
+        </form>
+    </div>
+</div>
 <?php
     if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['dodajSamochod']))
     {

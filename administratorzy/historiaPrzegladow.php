@@ -16,7 +16,7 @@ if (!$conn) {
 <div class="container">
     <div class="row-justify-content-center">
         <div class="scroll">
-            <table class="table">
+            <table class="table" id="myTable">
                 <thead>
                     <tr>
                         <th>Marka</th>
@@ -49,8 +49,16 @@ if (!$conn) {
                     
                     if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['szukaj']))
                     {
-                        try
-                        {
+                        ?>
+                    <script type="text/javascript">
+                        var tableHeaderRowCount = 1;
+                        var table = document.getElementById('myTable');
+                        var rowCount = table.rows.length;
+                        for (var i = tableHeaderRowCount; i < rowCount; i++) {
+                            table.deleteRow(tableHeaderRowCount);
+                        }
+                    </script>
+                    <?php
                             $conn = oci_connect($login, $haslo, $host);
                             if(!$conn)
                             {
@@ -82,11 +90,7 @@ if (!$conn) {
 
                     <?php endwhile;
 
-                        }
-                        catch(Exception $error)
-                        {
-                            echo 'Błąd serwera!';
-                        }
+                    
                     }
 
                     ?>
