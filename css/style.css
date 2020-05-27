@@ -16,9 +16,17 @@ html,body{
     height: 100%;
     font-family: 'Numans', sans-serif;
     align-content: center;
-        z-index:-1;
+        z-index:1;
     overflow:hidden;
     
+}
+.alert{
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    background-color: black;
+    border-color: red;
+    border-width: 2px;
 }
 .card{
     height: 370px;
@@ -26,7 +34,6 @@ html,body{
     margin-bottom: auto;
     width: 400px;
     background-color: rgba(0,0,0,0.80) !important;
-    
     
 }
 
@@ -142,10 +149,7 @@ input:focus{
     margin 5px;
     text-align: center;
 }
-.alert
-{
-    background-color: red;
-}
+
 
 .my-custom-scrollbar {
 position: relative;
@@ -178,6 +182,6 @@ tbody {
     overflow-y: auto;    /* Trigger vertical scroll    */
     overflow-x: hidden;  /* Hide the horizontal scroll */
 }
-button{
-    padding: 5px;
+.navbar{
+    color: #9a9da0;
 }

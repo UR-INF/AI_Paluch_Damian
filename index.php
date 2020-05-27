@@ -7,7 +7,7 @@
         <meta name="author" content="Damian Paluch">
         <title>Warsztat samochodowy</title>	   
 
-       
+
 
         <!--------------------------CSS--------------------->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -33,13 +33,9 @@
 
         session_start();
 
-        //$current_page = isset($_GET['page']) ? $_GET['page'] : null; 
-        if(isset($_SESSION["zalogowany"])==true){
-            if($_SESSION["zalogowany"]==true)
-                $current_page = 'logowanie';
-        }else{
-            $current_page = isset($_GET['page']) ? $_GET['page'] : null;
-        }
+
+        $current_page = isset($_GET['page']) ? $_GET['page'] : null;
+
 
 
         switch ($current_page) 

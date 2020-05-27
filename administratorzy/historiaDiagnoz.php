@@ -67,16 +67,16 @@ if (!$conn) {
                             oci_execute($curs);
 
                             while($row = oci_fetch_assoc($curs)):
-?>
-                            
-                                <tr>
+                    ?>
+
+                    <tr>
                         <td><?php echo $row['MARKA'];?></td>
                         <td><?php echo $row['MODEL'];?></td>
                         <td><?php echo $row['UWAGI_KLIENTA'];?></td>
                         <td><?php echo $row['UWAGI_MECHANIKA'];?></td>
                         <td><?php echo $row['DATA'];?></td>
                     </tr>
-                            <?php endwhile; 
+                    <?php endwhile; 
 
                         }
                         catch(Exception $error)
@@ -91,12 +91,12 @@ if (!$conn) {
         </div>
     </div>
     <div class="srodek">
-    <form method="POST">
-        <div class="row justify-content-center">
-        <div class="form-group">
-            <input type="text" name="szukajField" class="form-control" placeholder="Szukana wartość">
-        </div>
-        <button class="btn btn-secondary" type="submit" name="szukaj">Szukaj</button>
-        </div>
-    </form>
-</div>
+        <form method="POST">
+            <div class="row justify-content-center">
+                <div class="form-group">
+                    <input type="text" name="szukajField" class="form-control" placeholder="Szukana wartość">
+                </div>
+                <button class="btn btn-secondary" type="submit" name="szukaj">Szukaj</button>
+            </div>
+        </form>
+    </div>
