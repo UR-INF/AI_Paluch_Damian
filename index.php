@@ -86,12 +86,6 @@
             case 'historiaMechanika':
                 include 'mechanicy/historia.php';
                 break;
-            case 'edytujDiagnoze':
-                include 'mechanicy/edytujDiagnoze.php';
-                break;
-            case 'edytujPrzeglad':
-                include 'mechanicy/edytujPrzeglad.php';
-                break;
             case 'historiaDiagnoz':
                 include 'administratorzy/historiaDiagnoz.php';
                 break;

@@ -46,10 +46,10 @@ if (!$conn) {
                     </tr>
 
                     <?php endwhile; 
-                    
+
                     if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['szukaj']))
                     {
-                        ?>
+                    ?>
                     <script type="text/javascript">
                         var tableHeaderRowCount = 1;
                         var table = document.getElementById('myTable');
@@ -59,25 +59,25 @@ if (!$conn) {
                         }
                     </script>
                     <?php
-                            $conn = oci_connect($login, $haslo, $host);
-                            if(!$conn)
-                            {
-                                $m = oci_error();
-                                echo $m['message'], "\n";
-                                exit;   
-                            }
-                            $query="begin szukaj_danych.szukaj_przegladu_admin(:szukane, :cursor); end;";
+                        $conn = oci_connect($login, $haslo, $host);
+                        if(!$conn)
+                        {
+                            $m = oci_error();
+                            echo $m['message'], "\n";
+                            exit;   
+                        }
+                        $query="begin szukaj_danych.szukaj_przegladu_admin(:szukane, :cursor); end;";
 
-                            $szukane = $_POST['szukajField'];
-                            $curs = oci_new_cursor($conn);
-                            $stid = oci_parse($conn, $query);
+                        $szukane = $_POST['szukajField'];
+                        $curs = oci_new_cursor($conn);
+                        $stid = oci_parse($conn, $query);
 
-                            oci_bind_by_name($stid, ":szukane",  $szukane);
-                            oci_bind_by_name($stid, ":cursor", $curs, -1, OCI_B_CURSOR);
-                            $result = oci_execute($stid);
-                            oci_execute($curs);
+                        oci_bind_by_name($stid, ":szukane",  $szukane);
+                        oci_bind_by_name($stid, ":cursor", $curs, -1, OCI_B_CURSOR);
+                        $result = oci_execute($stid);
+                        oci_execute($curs);
 
-                            while($row = oci_fetch_assoc($curs)):
+                        while($row = oci_fetch_assoc($curs)):
                     ?>
                     <tr>
                         <td><?php echo $row['MARKA'];?></td>
@@ -90,7 +90,7 @@ if (!$conn) {
 
                     <?php endwhile;
 
-                    
+
                     }
 
                     ?>
@@ -103,8 +103,10 @@ if (!$conn) {
             <div class="row justify-content-center">
                 <div class="form-group">
                     <input type="text" name="szukajField" class="form-control" placeholder="Szukana wartość">
+                </div>&nbsp;
+                <div class="form-group">
+                    <button class="btn btn-secondary" type="submit" name="szukaj">Szukaj</button>
                 </div>
-                <button class="btn btn-secondary" type="submit" name="szukaj">Szukaj</button>
             </div>
         </form>
     </div>

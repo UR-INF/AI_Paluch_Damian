@@ -1,7 +1,8 @@
 <?php include 'klienci.php' ?>
 <div class="container">
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
-
+        <br>
+        <center><strong>Diagnozy</strong></center>
         <table class="table">
             <thead>
                 <tr>
@@ -40,7 +41,7 @@ while($row=oci_fetch_array($stid))
     </div>
 
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
-
+        <center><strong>Przeglądy</strong></center>
         <table class="table ">
             <thead>
                 <tr>
@@ -80,7 +81,7 @@ where s.id = p.id_samochodu";
     </div>
 
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
-
+        <center><strong>Usługi</strong></center>
         <table class="table">
             <thead>
                 <tr>

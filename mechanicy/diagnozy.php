@@ -1,7 +1,7 @@
 <?php include 'mechanicy.php' ?>
 
 <?php
-    $id = 0;
+    $idMechanika = $_SESSION['id'];
 $update=false;
 $samochod='';
 $uwagi_klienta='';
@@ -81,16 +81,16 @@ if (!$conn) {
         <form method="POST">
             <div class="row justify-content-center">
                 <div class="form-group">
-                    <input name="samochod" value="<?php echo $samochod;?>" type="text"  class="form-control" disabled>
-                </div>
+                    <input name="samochod" value="<?php echo $samochod;?>" type="text"  class="form-control" readonly>
+                </div>&nbsp;
                 <div class="form-group">
-                    <input name="uwagiKlienta" value="<?php echo $uwagiKlienta;?>" type="text"  class="form-control" disabled>
+                    <input name="uwagiKlienta" value="<?php echo $uwagiKlienta;?>" type="text"  class="form-control" readonly>
                 </div>
             </div>
             <div class="row justify-content-center">
                 
                 <div class="form-group">                   
-                    <input class="form-control" name="uwagiMechanika" placeholder="Uwagi" required="">
+                    <input class="form-control" name="uwagiMechanika" placeholder="Uwagi" id="bdlugie">
                     <input type="hidden" value="<?php echo $id;?>" name="id"/>
                 </div>
             </div>
@@ -112,7 +112,7 @@ if(isset($_POST['zapisz'])){
     $query = "begin obsluz_dane.obsluz_diagnoze(:id, :uwagiMechanika, :idMechanika); end;";
     $id = $_POST['id'];
     $uwagiMechanika = $_POST['uwagiMechanika'];
-    $idMechanika = 1;
+    $idMechanika;
     $stid = oci_parse($conn, $query);
     oci_bind_by_name($stid, ":id", $id);
     oci_bind_by_name($stid, ":uwagiMechanika", $uwagiMechanika);

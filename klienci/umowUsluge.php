@@ -17,15 +17,18 @@ $result = oci_execute($stid);
         ?>
         <form method="post">
             <div class="form-group">
-                <select name="idSamochodu">
-                    <?php
-                    while($row=oci_fetch_array($stid)):?>
-                    <option value="<?php echo $row['ID'];?>"><?php echo $row['MARKA'] . ' ' . $row['MODEL'];?> 
+                <center>
+                    <label for="id">Wybierz samochód</label>
+                    <select name="idSamochodu" class="form-control form-control-lg">
+                        <?php
+                        while($row=oci_fetch_array($stid)):?>
+                        <option value="<?php echo $row['ID'];?>"><?php echo $row['MARKA'] . ' ' . $row['MODEL'];?> 
 
-                    </option>
+                        </option>
 
-                    <?php endwhile;?>
-                </select>
+                        <?php endwhile;?> 
+                    </select>
+                </center>
             </div>
             <?php
             $query="select * from uslugi";
@@ -33,21 +36,30 @@ $result = oci_execute($stid);
             $result = oci_execute($stid);
             ?>
             <div class="form-group">
-                <select name="idUslugi">
-                    <?php
-                    while($row=oci_fetch_array($stid)):?>
-                    <option value="<?php echo $row['ID'];?>"><?php echo $row['NAZWA'];?> 
+                <center>
+                    <label for="idUslugi">Wybierz usługe</label>
+                    <select name="idUslugi" class="form-control form-control-lg">
+                        <?php
+                        while($row=oci_fetch_array($stid)):?>
+                        <option value="<?php echo $row['ID'];?>"><?php echo $row['NAZWA'];?> 
 
-                    </option>
+                        </option>
 
-                    <?php endwhile;?>
-                </select>
+                        <?php endwhile;?>
+                    </select>
+                </center>
             </div>
 
-            <div class="form-group">
-                <input name="data" type="date" class="form-control" required>
-            </div>
-            <button class="btn btn-secondary" type="submit" name="usluga">Dodaj</button>
+            <center>
+                <div class="d-flex justify-content-center">
+                    <div class="col-xs-6">
+                        <label for="data">Wybierz date</label>
+                        <input name="data" type="date" class="form-control" required><br>
+                    </div></div>
+            </center>
+            <center>
+                <button class="btn btn-secondary" type="submit" name="usluga">Dodaj</button>
+            </center>
         </form>
 
 

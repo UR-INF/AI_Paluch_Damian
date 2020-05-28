@@ -27,7 +27,7 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-2 float-right" method="post">
-            Zalogowany jako: <?php echo $_SESSION['imie']. ' ' . $_SESSION['nazwisko'];?>
+            Zalogowany jako: <?php echo $_SESSION['imie']. ' ' . $_SESSION['nazwisko']. '&nbsp';?>
             <button class="btn btn-secondary" name="wyloguj" type="submit">Wyloguj</button>
         </form>
     </div>

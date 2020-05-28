@@ -2,7 +2,8 @@
 <div class="d-flex justify-content-center">
     <div class="card">
         <?php
-    require_once "polaczenie.php";
+    $idKlienta = $_SESSION['id'];
+require_once "polaczenie.php";
 $conn = oci_connect($login, $haslo, $host);
 if(!$conn)
 {
@@ -10,31 +11,46 @@ if(!$conn)
     echo $m['message'], "\n";
     exit;   
 }
-$id = 1;
-$query="select * from samochody where id_klienta = '$id'";
+$query="select * from samochody where id_klienta = '$idKlienta'";
 $stid = oci_parse($conn, $query);
 $result = oci_execute($stid);
         ?>
+
         <form method="post">
             <div class="form-group">
-                <select name="idSamochodu">
+
+                <div class="float-right">
+                    <button class="btn btn-secondary" type="submit" name="edytujDane">Edytuj dane</button>
+                </div>
+                <button class="btn btn-secondary" type="submit" name="szukajSamochodu">Szukaj samochodu</button>
+            </div>
+
+            <?php if(isset($_POST['szukajSamochodu'])):?>
+            <div class="form-group">
+                <select name="idSamochodu" class="form-control form-control-lg">
                     <?php
                     while($row=oci_fetch_array($stid)):?>
                     <option value="<?php echo $row['ID'];?>"><?php echo $row['MARKA'] . ' ' . $row['MODEL'];?> 
 
                     </option>
+
                     <br>
 
                     <?php endwhile;?>
                 </select>
-                <div class="float-right">
-                    <button class="btn btn-secondary" type="submit" name="edytujDane">Edytuj dane</button>
-                </div>
+                <center>
+                    <form method="post">
+                        <br>
+                        <button class="btn btn-secondary" type="submit" name="edytujSamochod">Edytuj samochód</button>
+                    </form>
+                </center>
             </div>
-            <button class="btn btn-secondary" type="submit" name="edytujSamochod">Edytuj samochód</button>
+            <?php endif;?>
         </form>
 
         <?php
+
+
         if ($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['edytujSamochod'])):
         $idSamochodu = $_POST['idSamochodu'];
 
@@ -58,14 +74,16 @@ $result = oci_execute($stid);
                 <input type="number" name="rok" class="form-control" value="<?php echo $row['ROK']?>" placeholder="Rok" required="">
             </div>
             <input type="hidden" name="idSamochodu" value="<?php echo $row['ID'];?>">
-            <button class="btn btn-secondary" type="submit" name="zapiszSamochod">Zapisz</button>
+            <center>
+                <button class="btn btn-secondary" type="submit" name="zapiszSamochod">Zapisz</button>
+            </center>
         </form>
 
         <?php endwhile;endif;
 
-        
+
         if ($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['edytujDane'])):
-        $idKlienta = 1;
+
 
         $query="select * from klienci where id = '$idKlienta'";
         $stid = oci_parse($conn, $query);
@@ -83,8 +101,9 @@ $result = oci_execute($stid);
             <div class="form-group">
                 <input type="number" name="nrTel" class="form-control" value="<?php echo $row['NR_TEL']?>" placeholder="Numer telefonu" required="">
             </div>
-            
-            <button class="btn btn-secondary" type="submit" name="zapiszDane">Zapisz</button>
+            <center>
+                <button class="btn btn-secondary" type="submit" name="zapiszDane">Zapisz</button>
+            </center>
         </form>
 
         <?php endwhile;endif;  ?>
@@ -116,12 +135,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['zapiszSamochod'])) {
 if ($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['zapiszDane'])) {
 
     $query = "begin edytuj_dane.edytuj_dane_klienta(:idKlienta, :imie, :nazwisko, :nrTel); end;";
-    $idKlienta = 1;
     $imie = $_POST['imie'];
     $nazwisko = $_POST['nazwisko'];
     $nrTel = $_POST['nrTel'];
     $stid = oci_parse($conn, $query);
-    
+
     oci_bind_by_name($stid, ":idKlienta", $idKlienta);
     oci_bind_by_name($stid, ":imie", $imie);
     oci_bind_by_name($stid, ":nazwisko", $nazwisko);

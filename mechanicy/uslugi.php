@@ -1,7 +1,7 @@
 <?php include 'mechanicy.php' ?>
 
 <?php
-    $id = 0;
+    $idMechanika = $_SESSION['id'];
 $update=false;
 $samochod='';
 $uwagi_klienta='';
@@ -51,19 +51,19 @@ if (!$conn) {
 
                                 <input type="hidden" value="<?php echo $row['ID']; ?>" name="id"/>
                             </form>
-                            
-                            
+
+
                     </tr>
-                    
+
                     <?php endwhile; ?>
-                    
-                    
-                    
+
+
+
                 </tbody>
             </table>
         </div>
     </div>
-    
+
     <?php
     if(isset($_POST['obsluz'])){       
         $id = $_POST['id'];
@@ -84,20 +84,20 @@ if (!$conn) {
         <form method="POST">
             <div class="row justify-content-center">
                 <div class="form-group">
-                    <input name="samochod" value="<?php echo $samochod;?>" type="text"  class="form-control" disabled>
-                </div>
+                    <input name="samochod" value="<?php echo $samochod;?>" type="text"  class="form-control" readonly>
+                </div>&nbsp;
                 <div class="form-group">
-                    <input name="usluga" value="<?php echo $usluga;?>" type="text"  class="form-control" disabled>
+                    <input name="usluga" value="<?php echo $usluga;?>" type="text"  class="form-control" readonly>
                 </div>
             </div>
             <div class="row justify-content-center">
-                
+
                 <div class="form-group">                   
                     <input type="hidden" value="<?php echo $id;?>" name="id"/>
                 </div>
             </div>
-                <div class="form-group"> 
-                
+            <div class="form-group"> 
+
                 <div class="row justify-content-center">
                     <button name="zapisz" class="btn btn-secondary">Zapisz</button>
                 </div>
@@ -113,7 +113,7 @@ if (!$conn) {
 if(isset($_POST['zapisz'])){
     $query = "begin obsluz_dane.obsluz_usluge(:id, :idMechanika); end;";
     $id = $_POST['id'];
-    $idMechanika = 1;
+    $idMechanika;
     $stid = oci_parse($conn, $query);
     oci_bind_by_name($stid, ":id", $id);
     oci_bind_by_name($stid, ":idMechanika", $idMechanika);

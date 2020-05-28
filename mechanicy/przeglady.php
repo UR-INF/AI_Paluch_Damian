@@ -82,29 +82,34 @@ if (!$conn) {
         <form method="POST">
             <div class="row justify-content-center">
                 <div class="form-group">
-                    <input name="samochod" value="<?php echo $samochod;?>" type="text"  class="form-control" disabled>
+                    <input name="samochod" value="<?php echo $samochod;?>" type="text"  class="form-control" readonly>
                 </div>
 
             </div>
             <div class="row justify-content-center">
                 <div class="form-group">
+                    <center><label for="dataWaznosci">Data ważności</label></center>
                     <input name="dataWaznosci" type="date"  class="form-control" >
+                </div>&nbsp;
+                <div class="form-group"> 
+                    <center><label for="uwagi">Uwagi</label></center>
+                    <input name="uwagi" type="text" class="form-control" id="bdlugie">
                 </div>
-                <div class="form-group">   
-
-                    <input type="radio" id="pozytywny" name="wynik" value="Pozytywny">
-                    <label for="pozytywny">Pozytywny</label><br>
-                    <input type="radio" id="negatywny" name="wynik" value="Negatywny">
-                    <label for="negatywny">Negatywny</label><br>
-
+            </div>
+                <div class="row justify-content-center">
                     <div class="form-group">   
-                        <input name="uwagi" type="text" class="form-control">
+
+                        <input type="radio" id="pozytywny" name="wynik" value="Pozytywny">
+                        <label for="pozytywny">Pozytywny</label>
+                        <input type="radio" id="negatywny" name="wynik" value="Negatywny">
+                        <label for="negatywny">Negatywny</label>
                     </div>
                 </div>
+
                 <div class="form-group">   
                     <input type="hidden" value="<?php echo $id;?>" name="id"/>
                 </div>
-            </div>
+            
             <div class="form-group"> 
 
                 <div class="row justify-content-center">

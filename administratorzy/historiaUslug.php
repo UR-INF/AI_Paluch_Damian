@@ -98,8 +98,10 @@ if (!$conn) {
             <div class="row justify-content-center">
                 <div class="form-group">
                     <input type="text" name="szukajField" class="form-control" placeholder="Szukana wartość">
+                </div>&nbsp;
+                <div class="form-group">
+                    <button class="btn btn-secondary" type="submit" name="szukaj">Szukaj</button>
                 </div>
-                <button class="btn btn-secondary" type="submit" name="szukaj">Szukaj</button>
             </div>
         </form>
     </div>

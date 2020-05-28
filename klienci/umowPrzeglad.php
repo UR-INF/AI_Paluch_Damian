@@ -17,21 +17,30 @@ $result = oci_execute($stid);
         ?>
         <form method="post">
             <div class="form-group">
-                <select name="id">
-                    <?php
-                    while($row=oci_fetch_array($stid)):?>
-                    <option value="<?php echo $row['ID'];?>"><?php echo $row['MARKA'] . ' ' . $row['MODEL'];?> 
+                <center>
+                    <label for="id">Wybierz samochód</label>
+                    <select name="id" class="form-control form-control-lg">
+                        <?php
+                        while($row=oci_fetch_array($stid)):?>
+                        <option value="<?php echo $row['ID'];?>"><?php echo $row['MARKA'] . ' ' . $row['MODEL'];?> 
 
-                    </option>
+                        </option>
 
-                    <?php endwhile;?>
-                </select>
+                        <?php endwhile;?> 
+                    </select>
+                </center>
             </div>
 
-            <div class="form-group">
-                <input name="data" type="date" class="form-control" required>
-            </div>
+            <center>
+                <div class="d-flex justify-content-center">
+                    <div class="col-xs-6">
+                        <label for="data">Wybierz date</label>
+                        <input name="data" type="date" class="form-control" required><br>
+                    </div></div>
+            </center>
+            <center>
             <button class="btn btn-secondary" type="submit" name="przeglad">Dodaj</button>
+                </center>
         </form>
 
 

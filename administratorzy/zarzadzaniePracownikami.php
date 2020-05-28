@@ -85,18 +85,22 @@ if (!$conn) {
         <form method="POST">
             <div class="row justify-content-center">
                 <div class="form-group">
-                    <input name="imie" value="<?php echo $imie;?>" type="text" placeholder="Imię" class="form-control" required="">
-                </div>
+                    <center><label for="imie">Imię</label></center>
+                    <input name="imie" value="<?php echo $imie;?>" type="text" placeholder="Imię" class="form-control" required=""> 
+                </div> &nbsp;
                 <div class="form-group">
+                    <center><label for="nazwisko">Nazwisko</label></center>
                     <input name="nazwisko" value="<?php echo $nazwisko;?>" type="text" placeholder="Nazwisko" class="form-control" required="">
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="form-group">
+                    <center><label for="nrTel">Numer telefonu</label></center>
                     <input name="nrTel" value="<?php echo $nrTel;?>" type="number" placeholder="Nr. telefonu" class="form-control" required="">
-                </div>
-                <div class="form-group">                   
-                    <input class="form-control" name="adres" value="<?php echo $adres;?>" placeholder="Adres" required="">
+                </div>&nbsp;
+                <div class="form-group"> 
+                    <center><label for="adres">Adres</label></center>
+                    <input class="form-control" name="adres" value="<?php echo $adres;?>" placeholder="Adres" required="" id="dlugie">
                     <input type="hidden" value="<?php echo $id;?>" name="id"/>
                 </div>
             </div>

@@ -187,4 +187,14 @@ tbody {
 }
 input{
     margin: auto;
+
+}
+label{
+    color: white;
+}
+#dlugie{
+width: 400px;
+}
+#bdlugie{
+    width: 700px;
 }

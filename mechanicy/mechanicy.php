@@ -20,17 +20,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="index.php?page=historiaMechanika">Historia</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Edytuj dane</a>
-                <div class="dropdown-menu" style="">
-                    <a class="dropdown-item" href="index.php?page=edytujDiagnoze">Diagnozy</a>
-                    <a class="dropdown-item" href="index.php?page=edytujPrzeglad">Przeglądy</a>
-
-                </div>
-            </li>
+            
         </ul>
         <form class="form-inline my-2 my-lg-2 float-right" method="post">
-            Zalogowany jako: <?php echo $_SESSION['imie']. ' ' . $_SESSION['nazwisko'];?>
+            Zalogowany jako: <?php echo $_SESSION['imie']. ' ' . $_SESSION['nazwisko']. '&nbsp';?>
             <button class="btn btn-secondary" name="wyloguj" type="submit">Wyloguj</button>
         </form>
     </div>
