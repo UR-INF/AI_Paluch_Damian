@@ -4,30 +4,26 @@ html,body{
     height: 100%;
     background-color: #6D6D6D;
     background-image: url('../img/1.gif');
- 
+
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center; 
-    
-    
+
+
 }
 
 .login_container{
     height: 100%;
     font-family: 'Numans', sans-serif;
     align-content: center;
-        z-index:1;
+    z-index:1;
     overflow:hidden;
-    
+
 }
-.alert{
-    position: absolute;
-    z-index: 2;
-    top: 50%;
-    background-color: black;
-    border-color: red;
-    border-width: 2px;
+.alert {
+    top;
 }
+
 .card{
     height: 370px;
     margin-top: auto;
@@ -152,12 +148,12 @@ input:focus{
 
 
 .my-custom-scrollbar {
-position: relative;
-height: 27%;
-overflow: auto;
+    position: relative;
+    height: 27%;
+    overflow: auto;
 }
 .table-wrapper-scroll-y {
-display: block;
+    display: block;
 }
 #lewa
 {
@@ -175,8 +171,9 @@ display: block;
 }
 table {width: 100%;}
 
+
 tbody {
-    
+
     width: 100%;
     max-height: 200px;;       /* Just for the demo          */
     overflow-y: auto;    /* Trigger vertical scroll    */
@@ -193,7 +190,15 @@ label{
     color: white;
 }
 #dlugie{
-width: 400px;
+    width: 400px;
+}
+.alert{
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    background-color: black;
+    border-color: red;
+    border-width: 2px;
 }
 #bdlugie{
     width: 700px;

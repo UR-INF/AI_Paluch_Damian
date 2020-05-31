@@ -28,6 +28,7 @@
 
     </head>    
     <body>
+     
         <?php
 
 
@@ -83,8 +84,14 @@
             case 'obsluzUsluge':
                 include 'mechanicy/uslugi.php';
                 break;
-            case 'historiaMechanika':
-                include 'mechanicy/historia.php';
+            case 'historiaDiagnozMech':
+                include 'mechanicy/historiaDiagnoz.php';
+                break;
+            case 'historiaPrzegladowMech':
+                include 'mechanicy/historiaPrzegladow.php';
+                break;
+            case 'historiaUslugMech':
+                include 'mechanicy/historiaUslug.php';
                 break;
             case 'historiaDiagnoz':
                 include 'administratorzy/historiaDiagnoz.php';

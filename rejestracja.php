@@ -7,7 +7,6 @@
             <div class="card-body">
 
 
-
                 <form method="POST" action="index.php?page=rejestracja">
                     <div class="row">
                         <div class="col-xs-4 col-sm-4 col-md-4 col-xs-offset-4 col-sm-offset-4 col-md-offset-4">
@@ -65,6 +64,7 @@
 <?php
 
 if (isset($_POST['rejestruj'])){
+    $_SESSION['login'] = $_POST['login'];
     @rejestruj();
 }
 
@@ -101,7 +101,9 @@ function rejestruj(){
     <div class="alert alert-dismissible alert-secondary">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Błąd rejestracji</strong> Login jest już zajęty
-    </div><?php
+    </div>
+    
+    <?php
         }
         if($e['code'] == 20001)
         {
@@ -117,7 +119,9 @@ function rejestruj(){
     <div class="alert alert-dismissible alert-secondary">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <strong>Błąd rejestracji</strong> Hasło musi zawierać przynajmniej 6 znaków
-    </div><?php
+    </div>
+    
+    <?php
         }if($e['code'] == 20003)
         {
             ?>
@@ -144,7 +148,15 @@ function rejestruj(){
         }
     }
 }
-    ?></div><?php
+    ?>
+<script>
+window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 2000);
+</script>
+</div><?php
 
 
 if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['powrot']))

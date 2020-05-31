@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['zapiszSamochod'])) {
     oci_bind_by_name($stid, ":pojSilnika", $pojSilnika);
     oci_bind_by_name($stid, ":rok", $rok);
     $result = oci_execute($stid);
-
+    
     echo("<meta http-equiv='refresh' content='0'>");
 
 }
